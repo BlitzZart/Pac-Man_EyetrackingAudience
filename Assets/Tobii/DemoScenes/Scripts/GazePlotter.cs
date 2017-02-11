@@ -106,14 +106,15 @@ public class GazePlotter : MonoBehaviour
 
         for (int i = 0; i < PointCloudSize; i++)
         {
-            if (IsNotTooOld(_gazePoints[i]))
-            {
-                _gazePointCloudSprites[i].SetActive(isPointCloudVisible);
-            }
-            else
-            {
-                _gazePointCloudSprites[i].SetActive(false);
-            }
+            if (_gazePointCloudSprites[i] != null) // DARA: hack because points are destroyed on scene changes (not needed!)
+                if (IsNotTooOld(_gazePoints[i]))
+                {
+                    _gazePointCloudSprites[i].SetActive(isPointCloudVisible);
+                }
+                else
+                {
+                    _gazePointCloudSprites[i].SetActive(false);
+                }
         }
     }
 

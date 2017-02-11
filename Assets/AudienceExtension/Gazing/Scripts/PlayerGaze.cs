@@ -6,8 +6,7 @@ public class PlayerGaze : MonoBehaviour {
     private GazeManager gazeManager;
     private GazePlotter gazePlotter;
     private Vector2 targetPosition;
-    private float lerpSpeed = 15;
-
+    private float lerpSpeed = 13;
 
     #region unity callbacks
     void Start () {
@@ -21,8 +20,8 @@ public class PlayerGaze : MonoBehaviour {
     void Update()
     {
         // is null at player 2 (gaze data is streamed via network)
-        //if (gazePlotter == null)
-        //    transform.position = Vector3.Lerp(transform.position, targetPosition, lerpSpeed * Time.deltaTime);
+        if (gazePlotter == null)
+            transform.position = Vector3.Lerp(transform.position, targetPosition, lerpSpeed * Time.deltaTime);
 
     }
     #endregion
@@ -31,9 +30,10 @@ public class PlayerGaze : MonoBehaviour {
     // this is only used by player 2 (gaze data is streamed via network)
     public void SetPosition(Vector2 position)
     {
-        //targetPosition = position;
-        transform.position = position;
-        Debug.LogError("EYE " + position + "\nOWN " + transform.position);
+        // using offset because camera in game scene is off center
+        targetPosition = position + new Vector2(Camera.main.transform.position.x, Camera.main.transform.position.y);
+        //transform.position = position + new Vector2(Camera.main.transform.position.x, Camera.main.transform.position.y);
+        //Debug.LogError("EYE " + position + "\nOWN " + transform.position);
     }
 
     public void SetModeOff()
