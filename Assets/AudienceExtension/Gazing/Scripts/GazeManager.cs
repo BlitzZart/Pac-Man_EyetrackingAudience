@@ -76,7 +76,7 @@ public class GazeManager : MonoBehaviour {
                 item.SetModeImplicit();
         }
     }
-    #region
+    #endregion
 
     #region public
     /// <summary>
