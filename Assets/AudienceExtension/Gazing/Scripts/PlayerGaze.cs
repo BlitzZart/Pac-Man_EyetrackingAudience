@@ -21,8 +21,10 @@ public class PlayerGaze : MonoBehaviour {
     {
         // is null at player 2 (gaze data is streamed via network)
         if (gazePlotter == null)
+        {
+            //print("update");
             transform.position = Vector3.Lerp(transform.position, targetPosition, lerpSpeed * Time.deltaTime);
-
+        }
     }
     #endregion
 
@@ -30,6 +32,8 @@ public class PlayerGaze : MonoBehaviour {
     // this is only used by player 2 (gaze data is streamed via network)
     public void SetPosition(Vector2 position)
     {
+
+        //print("set position");
         // using offset because camera in game scene is off center
         targetPosition = position + new Vector2(Camera.main.transform.position.x, Camera.main.transform.position.y);
         //transform.position = position + new Vector2(Camera.main.transform.position.x, Camera.main.transform.position.y);

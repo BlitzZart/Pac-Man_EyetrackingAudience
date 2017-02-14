@@ -39,7 +39,7 @@ public class ScreenCapturing : MonoBehaviour {
         if (!Communicator.Player.isServer)
             return;
 
-        Communicator.Player.RpcSendByteStream(ReadSprite());
+        //Communicator.Player.RpcSendByteStream(ReadSprite());
     }
 
     private void Initialize()

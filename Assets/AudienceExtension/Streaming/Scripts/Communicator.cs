@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class Communicator : MonoBehaviour {
-    private static NetworkPlayer player;
-    public static NetworkPlayer Player
+    private static MS_NetworkPlayer player;
+    public static MS_NetworkPlayer Player
     {
         get
         {
@@ -16,9 +16,9 @@ public class Communicator : MonoBehaviour {
         }
     }
 
-    static NetworkPlayer GetPlayer() {
-        NetworkPlayer[] nwp = FindObjectsOfType<NetworkPlayer>();
-        foreach (NetworkPlayer item in nwp) {
+    static MS_NetworkPlayer GetPlayer() {
+        MS_NetworkPlayer[] nwp = FindObjectsOfType<MS_NetworkPlayer>();
+        foreach (MS_NetworkPlayer item in nwp) {
             if (item.hasAuthority) {
                 return item;
             }

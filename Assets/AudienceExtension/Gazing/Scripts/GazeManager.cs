@@ -89,6 +89,7 @@ public class GazeManager : MonoBehaviour {
         if (number >= gazes.Length)
             return;
 
+        //print("move gaze");
         gazes[number].SetPosition(position);
     }
     #endregion

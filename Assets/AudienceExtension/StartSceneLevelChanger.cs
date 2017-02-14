@@ -5,6 +5,6 @@ public class StartSceneLevelChanger : MonoBehaviour {
 
     public void GoToMenu()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("menu");
     }
 }
