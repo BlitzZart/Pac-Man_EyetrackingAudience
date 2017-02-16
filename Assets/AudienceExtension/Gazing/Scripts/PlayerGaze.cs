@@ -67,8 +67,27 @@ public class PlayerGaze : MonoBehaviour {
     private void SetRenderer(bool value)
     {
         SpriteRenderer r = GetComponent<SpriteRenderer>();
+        //print("turn " + name + " " +  value);
         if (r != null)
             r.enabled = value;
     }
     #endregion
+
+    void OnTriggerStay2D(Collider2D collider)
+    {
+        ImplicitGaze ig = collider.gameObject.GetComponent<ImplicitGaze>();
+        if (ig == null || !ig.bothGazes)
+        {
+            SetRenderer(false);
+            return;
+        }
+
+        SetRenderer(true);
+    }
+
+
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        SetRenderer(false);
+    }
 }

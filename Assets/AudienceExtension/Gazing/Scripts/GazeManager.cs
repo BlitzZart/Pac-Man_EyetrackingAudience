@@ -5,7 +5,7 @@ using UnityEngine;
 
 public enum GazeMode
 {
-    Off, Explicit, Implicit
+    Off, Explicit, Implicit, Implicit2
 }
 
 public class GazeManager : MonoBehaviour {
@@ -40,19 +40,24 @@ public class GazeManager : MonoBehaviour {
     {
         if (Input.GetKey(KeyCode.G))
         {
-            if (Input.GetKeyDown(KeyCode.O))
+            if (Input.GetKeyDown(KeyCode.Alpha0))
             {
                 gazeMode = GazeMode.Off;
                 InitGazeMode();
             }
-            else if (Input.GetKeyDown(KeyCode.E))
+            else if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 gazeMode = GazeMode.Explicit;
                 InitGazeMode();
             }
-            else if (Input.GetKeyDown(KeyCode.I))
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 gazeMode = GazeMode.Implicit;
+                InitGazeMode();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                gazeMode = GazeMode.Implicit2;
                 InitGazeMode();
             }
         }
@@ -60,6 +65,7 @@ public class GazeManager : MonoBehaviour {
 
     private void InitGazeMode()
     {
+        gazes = GetComponentsInChildren<PlayerGaze>();
         if (gazeMode == GazeMode.Off)
         {
             foreach (PlayerGaze item in gazes)
@@ -71,6 +77,11 @@ public class GazeManager : MonoBehaviour {
                 item.SetModeExplicit();
         }
         else if (gazeMode == GazeMode.Implicit)
+        {
+            foreach (PlayerGaze item in gazes)
+                item.SetModeImplicit();
+        }
+        if (gazeMode == GazeMode.Implicit2)
         {
             foreach (PlayerGaze item in gazes)
                 item.SetModeImplicit();

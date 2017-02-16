@@ -7,6 +7,8 @@ public class ImplicitGaze : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool gaze1, gaze2;
 
+    public bool bothGazes = false;
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -15,9 +17,17 @@ public class ImplicitGaze : MonoBehaviour
     void Update()
     {
         if (gaze1 && gaze2)
+        {
+            bothGazes = true;
             spriteRenderer.enabled = true;
-        else
+        } else
+        {
+            bothGazes = false;
             spriteRenderer.enabled = false;
+        }
+
+        //if (GazeManager.Instance.gazeMode != GazeMode.Implicit)
+        //    spriteRenderer.enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -41,5 +51,10 @@ public class ImplicitGaze : MonoBehaviour
         {
             gaze2 = false;
         }
+    }
+
+    public void TurnRendererOff()
+    {
+        spriteRenderer.enabled = false;
     }
 }

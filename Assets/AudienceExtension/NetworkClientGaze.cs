@@ -11,11 +11,12 @@ public class NetworkClientGaze : MonoBehaviour {
     // - which shows the game and 
     // - the screen of the notebook on which the eyetracker is attached
     // e.g 24 / 17.4 = 1.37931
-    public float scaling = 1;
+    //public float scaling = 1;
+    //private float scaleStep = 0.02f;
 
     private GazePlotter gazePlotter;
 
-
+    public Transform debugGraphic;
 
     private void Awake()
     {
@@ -32,10 +33,26 @@ public class NetworkClientGaze : MonoBehaviour {
 
     void Update()
     {
+        //SetScaling();
 
+        debugGraphic.position = transform.position;
+        
         if (Communicator.Player == null)
             return;
 
         Communicator.Player.CmdPlayerTowGaze(transform.position);
+
+    }
+
+    private void SetScaling()
+    {
+        if (Input.GetKeyDown(KeyCode.Plus) || Input.GetKeyDown(KeyCode.KeypadPlus))
+        {
+            //scaling += scaleStep;
+        }
+        else if (Input.GetKeyDown(KeyCode.Minus) || Input.GetKeyDown(KeyCode.KeypadMinus))
+        {
+            //scaling -= scaleStep;
+        }
     }
 }

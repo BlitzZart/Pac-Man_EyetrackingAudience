@@ -140,7 +140,7 @@ public class GazePlotter : MonoBehaviour
 
     private void UpdateGazeBubbleVisibility()
     {
-        _gazeBubbleRenderer.enabled = UseFilter;
+        //_gazeBubbleRenderer.enabled = UseFilter;
     }
 
     private int Next()

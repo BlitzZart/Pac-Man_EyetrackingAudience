@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -177,14 +178,21 @@ public class GameManager : MonoBehaviour {
         UIScript ui = GameObject.FindObjectOfType<UIScript>();
         Destroy(ui.lives[ui.lives.Count - 1]);
         ui.lives.RemoveAt(ui.lives.Count - 1);
+
+        if (lives <= 0)
+        {
+            lives = 3;
+            SceneManager.LoadScene("menu");
+        }
+
     }
 
     public static void DestroySelf()
     {
-
         score = 0;
         Level = 0;
         lives = 3;
         Destroy(GameObject.Find("Game Manager"));
+
     }
 }
