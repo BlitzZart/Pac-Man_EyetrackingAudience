@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerGaze : MonoBehaviour {
     private GazeManager gazeManager;
@@ -8,10 +9,15 @@ public class PlayerGaze : MonoBehaviour {
     private Vector2 targetPosition;
     private float lerpSpeed = 13;
 
+
+    private SpriteRenderer gazeImageRenderer;
+    public Sprite circle, dot;
+
     #region unity callbacks
     void Start () {
         gazeManager = GazeManager.Instance;
         gazePlotter = GetComponent<GazePlotter>();
+        gazeImageRenderer = GetComponent<SpriteRenderer>();
 
         // is null at player 2 (gaze data is streamed via network)
         if (gazePlotter != null)
@@ -47,11 +53,13 @@ public class PlayerGaze : MonoBehaviour {
     }
     public void SetModeExplicit()
     {
+        gazeImageRenderer.sprite = circle;
         SetCollider(false);
         SetRenderer(true);
     }
     public void SetModeImplicit()
     {
+        gazeImageRenderer.sprite = dot;
         SetCollider(true);
         SetRenderer(false);
     }
